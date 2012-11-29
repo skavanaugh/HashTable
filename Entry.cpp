@@ -17,13 +17,11 @@ string Entry<V>::getKey() {
 
 template <typename V>
 V Entry<V>::getValue() {
-  // assert(this!=0);
   return value;
 }
 
 template <typename V>
 void Entry<V>::setValue(V v) {
-  // assert(this!=0);
   value = v;
 }
 

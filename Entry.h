@@ -19,4 +19,5 @@ class Entry {
   void setValue(V v);
 
 };
+
 #endif
