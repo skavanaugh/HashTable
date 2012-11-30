@@ -5,24 +5,27 @@
 #include <string>
 #include <cassert>
 #include <vector>
-// #include <list>
+#include <list>
 
 using std::string;
 using std::vector;
-// using std::list;
+using std::list;
 
 
 template <typename V>
 class HashTable {
   private:
-    static const int SIZE = 97;  // hashing function mods this prime #
-    vector<vector<Entry<V> > >(SIZE) vecTable;
+    static const int SIZE = 11;  // hashing function mods this prime #
+    vector<list<Entry<V> > > vecTable;
+
+    int hashFunction(string k);    
+    Entry<V>* findEntry(string k,int hash);
   
   public:
     HashTable<V>();
     ~HashTable<V>();
 
-    V find(string k);
+    V* find(string k);
     void insert(string k, V v);
     void remove(string k);
     void print();

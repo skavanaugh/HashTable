@@ -2,10 +2,10 @@ CPP = g++
 CFLAGS = -Wall -Wextra 
 # -Werror
 
-#all: htest etest
+all: htest etest
 
-#htest: hash_test.cpp HashTable.o Entry.o
-#	$(CPP) $(CFLAGS) -o htest $^
+htest: hash_test.cpp HashTable.o Entry.o
+	$(CPP) $(CFLAGS) -o htest $^
 
 HashTable.o: HashTable.h HashTable.cpp
 	$(CPP) $(CFLAGS) -c HashTable.cpp

@@ -21,6 +21,11 @@ V Entry<V>::getValue() {
 }
 
 template <typename V>
+V*  Entry<V>::getValuePtr() {
+  return &value;
+}
+
+template <typename V>
 void Entry<V>::setValue(V v) {
   value = v;
 }

@@ -4,11 +4,13 @@
 #include <cassert>
 #include <vector>
 #include <list>
+#include <iostream>
 
 using std::string;
 using std::vector;
 using std::list;
-
+using std::cout;
+using std::endl;
 
 template <typename V>
 int HashTable<V>::hashFunction(string k) {
@@ -23,23 +25,25 @@ int HashTable<V>::hashFunction(string k) {
   hash = sum % SIZE;
   return hash;  
 }
-
+/*
 template <typename V>
-Entry<V>* HashTable<V>::findEntry(string k, int hash) {
+bool HashTable<V>::findEntry(string k, int hash, int& index) {
   
-  list<Entry<V> > hList = vecTable[hash];
-  typename list<Entry<V> >::iterator it;
+  list<Entry<V> >& hList = vecTable[hash];
+  typename list<Entry<V> >&::iterator it;
+  index = 0;
 
   for (it = hList.begin(); it != hList.end(); it++) {
     if (it->getKey() == k) { // k is in the hash table
-      return &(*it);
+      return true;
     }
+    index++;
   }
   
-  return 0; // k was not found in the hash table
+  return false; // k was not found in the hash table
 
 }
-
+*/
 template <typename V>
 HashTable<V>::HashTable() {
   vecTable.resize(SIZE);
@@ -53,53 +57,79 @@ template <typename V>
 V* HashTable<V>::find(string k) {
   
   int hash = hashFunction(k);
-  Entry<V>* e = findEntry(k,hash);
-  V v;
+  list<Entry<V> > &hList = vecTable[hash];
+  typename list<Entry<V> >::iterator it;
 
-  if (e == 0)
-    return 0;
-  else {
-    v = e->getValue();
-    return &v;
+  for (it=hList.begin(); it!=hList.end(); it++) {
+    if (it->getKey() == k) {
+      // return &(it->getValue());
+      return it->getValuePtr();
+    }
   }
+
+  // if no key == k in the hash table
+  return 0;
+
 }
 
 template <typename V>
 void HashTable<V>::insert(string k, V v) {
 
   int hash = hashFunction(k);
-  Entry<V>* e = findEntry(k,hash);
- 
-  if (e != 0 ) {
-    e->setValue(v);
-    return;
+  list<Entry<V> > &hList = vecTable[hash];
+  typename list<Entry<V> >::iterator it;
+
+  for (it=hList.begin(); it!=hList.end(); it++) {
+    if (it->getKey() == k) {
+      it->setValue(v);
+      return;
+    }
   }
-  else {
-    Entry<V> newEntry(k,v);
-    list<Entry<V> > hList = vecTable[hash];
-    hList.push_back(newEntry);
-    return;
-  }
+
+  // if no key == k in the hash table create a new Entry
+  Entry<V> newEntry(k,v);
+  hList.push_back(newEntry); 
+  return;
+
 }
 
 template <typename V>
 void HashTable<V>::remove(string k) {
 
   int hash = hashFunction(k);
-  Entry<V>* e = findEntry(k,hash);
+  list<Entry<V> > &hList = vecTable[hash];
+  typename list<Entry<V> >::iterator it;
 
-  if (e == 0)
-    return;
-  else {
-    list<Entry<V> > hList = vecTable[hash];
-    hList.remove(*e);
-    return;
+  for (it=hList.begin(); it!=hList.end(); it++) {
+    if (it->getKey() == k) {
+      hList.erase(it);
+      return;
+    }
   }
+
+  // if no key == k in the hash table return
+  return;
+
 }
 
 template <typename V>
 void HashTable<V>::print() {
 
+  typename list<Entry<V> >::iterator it;
+
+  cout << endl;
+  for (int i=0; i<SIZE; i++) {
+    
+    cout << i << ": ";
+    list<Entry<V> > &hList = vecTable[i];
+    for (it=hList.begin(); it!=hList.end(); it++) {
+      cout << "[" << it->getKey() << "," << it->getValue() << "]";
+    }
+    cout << endl;
+  }
+  cout << endl;
+
+  return;
 }
 
 
