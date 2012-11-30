@@ -1,13 +1,14 @@
 CPP = g++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra 
+# -Werror
 
 #all: htest etest
 
-#atest: avl_test.cpp AVL.o Node.o
-#	$(CPP) $(CFLAGS) -o atest $^
+#htest: hash_test.cpp HashTable.o Entry.o
+#	$(CPP) $(CFLAGS) -o htest $^
 
-#AVL.o: AVL.h AVL.cpp
-#	$(CPP) $(CFLAGS) -c AVL.cpp
+HashTable.o: HashTable.h HashTable.cpp
+	$(CPP) $(CFLAGS) -c HashTable.cpp
 
 etest: entry_test.cpp Entry.o
 	$(CPP) $(CFLAGS) -o etest entry_test.cpp Entry.o
