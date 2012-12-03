@@ -15,17 +15,17 @@ using std::list;
 template <typename V>
 class HashTable {
   private:
-    static const int SIZE = 11;  // hashing function mods this prime #
+    const int SIZE;  // hashing function mods this number (which is typically prime)
     vector<list<Entry<V> > > vecTable;
 
     int hashFunction(string k);    
-    Entry<V>* findEntry(string k,int hash);
   
   public:
-    HashTable<V>();
-    ~HashTable<V>();
+    HashTable(const int s = 31);  // can either use default SIZE or set SIZE in constructor
+    ~HashTable();
 
     V* find(string k);
+    string strFind(string k);
     void insert(string k, V v);
     void remove(string k);
     void print();

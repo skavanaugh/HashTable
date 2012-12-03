@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <climits>
 
 using std::string;
 using std::vector;
@@ -25,32 +26,15 @@ int HashTable<V>::hashFunction(string k) {
   hash = sum % SIZE;
   return hash;  
 }
-/*
-template <typename V>
-bool HashTable<V>::findEntry(string k, int hash, int& index) {
-  
-  list<Entry<V> >& hList = vecTable[hash];
-  typename list<Entry<V> >&::iterator it;
-  index = 0;
 
-  for (it = hList.begin(); it != hList.end(); it++) {
-    if (it->getKey() == k) { // k is in the hash table
-      return true;
-    }
-    index++;
-  }
-  
-  return false; // k was not found in the hash table
-
-}
-*/
 template <typename V>
-HashTable<V>::HashTable() {
+HashTable<V>::HashTable(const int s) : SIZE(s) {
+  assert(SIZE > 0 && SIZE < INT_MAX);
   vecTable.resize(SIZE);
 }
 
 template <typename V>
-HashTable<V>::~HashTable<V>() {
+HashTable<V>::~HashTable() {
 }
 
 template <typename V>
@@ -122,11 +106,15 @@ void HashTable<V>::print() {
     
     cout << i << ": ";
     list<Entry<V> > &hList = vecTable[i];
+
     for (it=hList.begin(); it!=hList.end(); it++) {
       cout << "[" << it->getKey() << "," << it->getValue() << "]";
     }
+
     cout << endl;
+
   }
+
   cout << endl;
 
   return;
