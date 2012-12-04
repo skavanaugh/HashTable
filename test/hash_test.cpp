@@ -15,9 +15,9 @@ using std::endl;
 TEST(HashTableTest, ConstructDestruct) {
 
   HashTable<int> iS;
-  iS.print();
+  // iS.print();
   HashTable<int>* iH = new HashTable<int>();
-  iH->print();
+  // iH->print();
   delete iH;
 
   HashTable<int> iS7(7);
@@ -27,9 +27,9 @@ TEST(HashTableTest, ConstructDestruct) {
   delete iH13;
 
   HashTable<double> dS;
-  dS.print();
+  // dS.print();
   HashTable<double>* dH = new HashTable<double>();
-  dH->print();
+  // dH->print();
   delete dH;
  
   HashTable<int> dS7(7);
@@ -39,9 +39,9 @@ TEST(HashTableTest, ConstructDestruct) {
   delete dH13;
 
   HashTable<string> sS;
-  sS.print();
+  // sS.print();
   HashTable<string>* sH = new HashTable<string>();
-  sH->print();
+  // sH->print();
   delete sH;
  
   HashTable<string> sS7(7);
@@ -66,10 +66,6 @@ TEST(HashTableTest, insert) {
   EXPECT_EQ(1.1,*(di.find("sylvan")));
   EXPECT_EQ("lora",*(si.find("sylvan")));
 
-  hi.print();
-  di.print();
-  si.print();
-
 }
 
 TEST(HashTableTest, insertCollisions) {
@@ -90,7 +86,6 @@ TEST(HashTableTest, insertCollisions) {
         }
       curStr += (char) randChar;
     }
-    // cout << curStr << endl;
     v.push_back(curStr);
     randLength = rand() % 20 + 1;
     curStr = "";
@@ -142,10 +137,6 @@ TEST (HashTableTest, insertOverwrite) {
   EXPECT_EQ(22.1,*(di.find("sylvan")));
   EXPECT_EQ("lora22",*(si.find("sylvan")));
 
-  hi.print();
-  di.print();
-  si.print();
-
 }
 
 TEST (HashTableTest, remove) {
@@ -166,10 +157,6 @@ TEST (HashTableTest, remove) {
   EXPECT_EQ(0,di.find("sylvan"));
   EXPECT_EQ(0,si.find("sylvan"));
 
-  hi.print();
-  di.print();
-  si.print();
-
 }
 
 TEST (HashTableTest, removeDNE) {
@@ -185,10 +172,6 @@ TEST (HashTableTest, removeDNE) {
   EXPECT_EQ(0,hi.find("sylvan"));
   EXPECT_EQ(0,di.find("sylvan"));
   EXPECT_EQ(0,si.find("sylvan"));
-
-  hi.print();
-  di.print();
-  si.print();
 
 }
 
@@ -206,10 +189,6 @@ TEST (HashTableTest, find) {
   EXPECT_EQ(32.7,*(di.find("test")));
   EXPECT_EQ("data",*(si.find("test")));
 
-  hi.print();
-  di.print();
-  si.print();
-
 }
 
 TEST (HashTableTest, findDNE) {
@@ -222,10 +201,6 @@ TEST (HashTableTest, findDNE) {
   EXPECT_EQ(0,di.find("test"));
   EXPECT_EQ(0,si.find("test"));
 
-  hi.print();
-  di.print();
-  si.print();
-
 }
 
 TEST (HashTableTest, print) {
@@ -236,11 +211,11 @@ TEST (HashTableTest, print) {
 
   hi.insert("sylvan",41);
   di.insert("sylvan",41.5);
-  si.insert("sylvan","happy");
+  si.insert("sylvan","daddy");
 
   hi.insert("lora",39);
   di.insert("lora",39.5);
-  si.insert("lora","abc");
+  si.insert("lora","mommy");
 
   hi.insert("jake",6);
   di.insert("jake",6.5);
@@ -252,52 +227,4 @@ TEST (HashTableTest, print) {
 
 }
 
-
-/*
-int main() {
-
-  HashTable<int>* h = new HashTable<int>(47);
-
-  h->insert("sylvan",10);
-  h->insert("lora",5);
-  h->insert("jake",15);
-  h->insert("kiran",20);
-  h->insert("theo",16); 
-  h->insert("sylvan",41);
-  h->insert("lora",39);
-  h->insert("jake",6);
-  h->insert("kiran",3);
-  h->insert("theo",1);
-
-  h->insert("will",10);
-  h->insert("kelly",5);
-  h->insert("nadine",15);
-  h->insert("nick",20);
-  h->insert("zoe",16);
-  h->print();
-
-  if (h->find("sylvan")!=0)
-    cout << *(h->find("sylvan")) << endl;
-
-  h->remove("sylvan");
-  h->remove("lora");
-  h->remove("will");
-  h->print();
-
-  h->insert("sylvan",30);
-  h->insert("lora",28);
-  h->insert("aili",0);
-  h->insert("richard",70);
-  h->insert("robert",70);
-  h->insert("sandie",73);
-  h->print();  
-
-  delete h;
-
-  unsigned char x = 215;
-  cout << x << " " << (unsigned char) 254 << " " << (unsigned char) 215 << endl;
-
-}
-
-*/
-  
+ 
