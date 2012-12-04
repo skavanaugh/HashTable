@@ -21,7 +21,7 @@ class HashTable {
     int hashFunction(string k);    
   
   public:
-    HashTable(const int s = 17);  // can either use default SIZE or set SIZE in constructor
+    HashTable(const int s = 257);  // can either use default SIZE or set SIZE in constructor
     ~HashTable();
 
     V* find(string k);
