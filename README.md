@@ -12,7 +12,7 @@ Here are a few points to note:
 
 3)  I considered using a vector which would allow me to immediately return to the appropriate element with a helper function as described above.  But it didn't seem a sensible choice as removing from the front or middle of the vector is an expensive operation.
 
-4) So I just used an iterator individually in each method.  I simplified the syntax slightly by using a local list reference in each method as follows:
+4) So I just used an iterator individually in each method.  I simplified the syntax slightly by using a local list reference in each method as a list of Entries &.  Here is the actual code, which you can see in src/HashTable.cpp but for some reason, it doesn't appear correctly on GitHub.
 
   list<Entry<V> > &hList = vecTable[hash];
   typename list<Entry<V> >::iterator it;
